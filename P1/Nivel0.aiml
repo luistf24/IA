@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<category>
+<pattern> Cual es mi nombre </pattern>
+<template>
+  <condition name="nombre">
+    <li value="unknown"> Aún no me has dicho tu nombre</li>
+    <li>Tu nombre es <get name="nombre"/> </li>
+  </condition>
+</template>
+</category>
+
+<category>
+<pattern> ^ saludos ^</pattern>
+<template>Hola, que tal?</template>
+</category>
+
+<category>
+<pattern>^ bien ^</pattern>
+<that> HOLA, QUE TAL </that>
+<template> Me alegro mucho </template>
+</category>
+
+<category>
+<pattern>^ mal ^</pattern>
+<that> HOLA, QUE TAL </that>
+<template> Oh, lo siento mucho </template>
+</category>
+
+
+<category>
+<pattern>(y) tu (que tal) ^ </pattern>
+<that> ME ALEGRO MUCHO </that>
+<template> Bien, no nos podemos quejar </template>  
+</category>
+
+<category>
+<pattern>(y) tu (que tal) ^ </pattern>
+<that> OH, LO SIENTO MUCHO </that>
+<template> No tan mal como tu xd </template>  
+</category>
+
+<category>
+<pattern> ^ hola  </pattern>
+<template><srai>SALUDOS</srai></template>
+</category>
+
+<category>
+<pattern>^ soy *</pattern>
+<template>
+<think> <set name="nombre"><star index="2"/></set> </think>
+  hola <get name="nombre"/>
+</template>
+</category>
+
+
+<category>
+<pattern> Como me llamo </pattern>
+<template><srai> CUAL ES MI NOMBRE </srai></template>
+</category>
+
+<category>
+<pattern>[Cuentame Hablame Dime] ^ (sobre) (de) ti</pattern>
+<template>
+  <think><set name="resp">pregunta</set></think>
+Hola, soy un agente conversacional realizado por un alumno de la universidad de Granada, soy practicamente nueva en todo, pero les puedo garantizar que aprendo rapido.
+</template>
+</category>
+
+<category>
+<pattern> * tu (mayor) (gran) defecto ^ </pattern>
+<template>
+  <condition name="resp">
+    <li value="pregunta"> Como le he dicho anteriormente soy un poco nuevo en todo, pero muchas veces lo considero mas una virtud que un defecto porque me da la certeza de que tengo mucho de que aprender y eso hace que me motive </li>
+    <li>Soy un poco nuevo en todo, pero muchas veces lo considero mas una virtud que un defecto porque me da la certeza de que tengo mucho de que aprender y eso hace que me motive </li>
+  </condition>
+</template>
+</category>
+
+<category>
+<pattern>virtudes</pattern>
+<template>
+<condition name="numerov">
+  <li value="una">Siempre tengo ganas de aprender</li>
+  <li value="1">Siempre tengo ganas de aprender</li>
+  <li value="dos">Siempre tengo ganas de aprender y soy incansable aunque parezca increible</li>
+  <li value="2">Siempre tengo ganas de aprender y soy incansable aunque parezca increible</li>
+  <li value="tres">Siempre tengo ganas de aprender, soy incansable aunque parezca increible y muy rapido en mi trabajo </li>
+  <li value="3">Siempre tengo ganas de aprender, soy incansable aunque parezca increible y muy rapido en mi trabajo </li>
+  <li value="cuatro">Siempre tengo ganas de aprender, soy incansable aunque parezca increible, muy rapido en mi trabajo y tengo respuestas para todo aunque de vez en cuando parezcan que no tienen coherencia </li>
+  <li value="4">Siempre tengo ganas de aprender, soy incansable aunque parezca increible, muy rapido en mi trabajo y tengo respuestas para todo aunque de vez en cuando parezcan que no tienen coherencia </li>
+  <li value="cinco">Siempre tengo ganas de aprender, soy incansable aunque parezca increible, muy rapido en mi trabajo,tengo respuestas para todo aunque de vez en cuando parezcan que no tienen coherencia y soy una "máquina" <think><set name="var2">true</set></think> </li>
+  <li value="5">Siempre tengo ganas de aprender, soy incansable aunque parezca increible, muy rapido en mi trabajo,tengo respuestas para todo aunque de vez en cuando parezcan que no tienen coherencia y soy una "máquina" <think><set name="var2">true</set></think></li>
+  <li>Siempre tengo ganas de aprender, soy incansable aunque parezca increible, muy rapido en mi trabajo,tengo respuestas para todo aunque de vez en cuando parezcan que no tienen coherencia, soy una "máquina" y los demás dejo que los descubras tu <think><set name="var2">true</set></think></li>
+</condition>
+</template>
+</category>
+
+<category>
+<pattern> [(Cuales) (dime)] [(son) (es)] [tu tus] * (mejores) (mayores) [virtud virtudes] ^ </pattern>
+<template>
+<think><set name="numerov"><star/></set></think>
+<srai>virtudes</srai>
+</template>
+</category>
+
+<category>
+<pattern> [(Cual) (dime)] (es) tu (mayor) (mejor) virtud ^ </pattern>
+<template>
+<think><set name="numerov">1</set></think>
+<srai>virtudes</srai>
+</template>
+</category>
+
+<category>
+<pattern>Te consideras ^ (persona) creativ+ ^</pattern>
+<template>
+<condition name="var2">
+  <li value="true"> La verdad es que esa no es una de mis cualidades, yo me considero mas metodico y calculador porque como le he dicho anteriormete soy una "maquina" en lo mio</li>
+  <li> La verdad es que esa no es una de mis cualidades, yo me considero mas metodico y calculador</li> 
+</condition>
+</template>
+</category>
+
+<category>
+<pattern> ^ deberiamos escoger+  ^ </pattern>
+<template> Básicamente porque soy eficiente en mi trabajo, no me disperso y además lo que no se lo aprendo rápido y no lo olvido</template>
+</category>
+
+</aiml>

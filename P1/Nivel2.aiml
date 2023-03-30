@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<category>
+<pattern>Dame una cita para hoy a las * </pattern>
+<template>
+<think>
+  <set var="f"><srai>DATE </srai></set>
+  <set var="d"><srai> SELECTITEM 1 IN <get var="f"/></srai></set>
+  <set var="m"><srai> SELECTITEM 2 IN <get var="f"/></srai></set>
+  <set var="h"><star/></set>
+</think>
+<condition var="h">
+  <li value="null"><srai>QUISIERA UNA CITA PARA EL <get var="d"/> DE <get var="m"/> A LAS null DEL null</srai></li>
+  <li><srai>QUISIERA UNA CITA PARA EL <get var="d"/> DE <get var="m"/> A LAS <star/> DEL null</srai></li>
+</condition>
+</template>
+</category>
+
+<category>
+<pattern>(quisiera) (una) cita (para) hoy a las *</pattern>
+<template>
+<srai>DAME UNA CITA PARA HOY A LAS <star/></srai>
+</template>
+</category>
+
+<category>
+<pattern>(Dame)(quisiera) (una) cita (para) hoy</pattern>
+<template>
+<srai>DAME UNA CITA PARA HOY A LAS null </srai>
+</template>
+</category>
+
+
+<category>
+<pattern>Dame (una) cita para mañana a las * </pattern>
+<template>
+<think>
+  <set var="f"><srai>DATE TOMORROW</srai></set>
+  <set var="d"><srai> SELECTITEM 1 IN <get var="f"/></srai></set>
+  <set var="m"><srai> SELECTITEM 2 IN <get var="f"/></srai></set>
+  <set var="y">aa<srai> SELECTITEM 3 IN <get var="f"/></srai></set>
+  <set var="h"><star/></set>
+</think>
+<condition var="h">
+  <li value="null"><srai>QUISIERA UNA CITA PARA EL <get var="d"/> DE <get var="m"/> A LAS null DEL  <get var="y"/></srai></li>
+  <li><srai>QUISIERA UNA CITA PARA EL <get var="d"/> DE <get var="m"/> A LAS <star/> DEL  <get var="y"/></srai></li>
+</condition>
+</template>
+</category>
+
+<category>
+<pattern>(quisiera) (una) cita (para) mañana a las *</pattern>
+<template>
+<srai>DAME UNA CITA PARA MAÑANA A LAS <star/></srai>
+</template>
+</category>
+
+<category>
+<pattern>(Dame)(quisiera) (una) cita (para) mañana</pattern>
+<template>
+<srai>DAME UNA CITA PARA MAÑANA A LAS null </srai>
+</template>
+</category>
+
+<category>
+<pattern>Dame (una) cita para pasado mañana a las * </pattern>
+<template>
+<think>
+  <set var="f"><srai>DAYAFTERTOMORROWDATE</srai></set>
+  <set var="d"><srai> SELECTITEM 1 IN <get var="f"/></srai></set>
+  <set var="m"><srai> SELECTITEM 2 IN <get var="f"/></srai></set>
+  <set var="h"><star/></set>
+</think>
+  <condition var="h">
+  <li value="null"><srai>QUISIERA UNA CITA PARA EL <get var="d"/> DE <get var="m"/> A LAS null DEL null</srai></li>
+  <li><srai>QUISIERA UNA CITA PARA EL <get var="d"/> DE <get var="m"/> A LAS <star/> DEL null </srai></li>
+  </condition>
+</template>
+</category>
+
+<category>
+<pattern>(quisiera) (una) cita (para) pasado mañana a las *</pattern>
+<template>
+<srai>DAME UNA CITA PARA PASADO MAÑANA A LAS <star/></srai>
+</template>
+</category>
+
+<category>
+<pattern>(Dame)(quisiera) (una) cita (para) pasado mañana</pattern>
+<template>
+<srai>DAME UNA CITA PARA PASADO MAÑANA A LAS null </srai>
+</template>
+</category>
+
+<category>
+<pattern> numDia * </pattern>
+<template>
+<think>
+<set var="dia"><srai>QuitarTilde <star/></srai></set>
+</think>
+<condition var="dia">
+<li value="Lunes">1</li>
+<li value="lunes">1</li>
+<li value="Martes">2</li>
+<li value="martes">2</li>
+<li value="Miercoles">3</li>
+<li value="miercoles">3</li>
+<li value="Jueves">4</li>
+<li value="jueves">4</li>
+<li value="Viernes">5</li>
+<li value="viernes">5</li>
+<li value="Sabado">6</li>
+<li value="sabado">6</li>
+<li value="Domingo">7</li>
+<li value="domingo">7</li>
+</condition>
+</template>
+</category>
+
+<category>
+<pattern>Dame una cita para el proximo * a las * </pattern>
+<template>
+<think>
+  <set var="sum"><srai> DAYS UNTIL <star/></srai></set>
+  <set var="f"><srai>DATE IN <get var="sum"/> DAYS</srai></set>
+  <set var="m"><srai> SELECTITEM 2 IN <get var="f"/></srai></set>
+  <set var="d"><srai> SELECTITEM 1 IN <get var="f"/></srai></set>
+  <set var="h"><star index="2"/></set>
+</think>
+<condition var="h">
+<li value="null"><srai>QUISIERA UNA CITA PARA EL <get var="d"/> DE <get var="m"/> A LAS null DEL null</srai></li>
+<li><srai>QUISIERA UNA CITA PARA EL <get var="d"/> DE <get var="m"/> A LAS <star index="2"/> DEL null</srai></li>
+</condition>
+</template>
+</category>
+
+<category>
+<pattern>(dame) (quisiera) (una) cita para el (siguiente)(proximo) *</pattern>
+<template>
+<srai>DAME UNA CITA PARA EL PROXIMO <star /> A LAS null  </srai>
+</template>
+</category>
+
+<category>
+<pattern>* por la *</pattern>
+<template>
+<think>
+ <set var="hora"><star index="2"/></set>
+<condition var="hora">
+<li value="mañana">
+  <set name="buclei">9</set>
+  <set name="buclef">16</set>
+</li>
+<li value="tarde">
+  <set name="buclei">16</set>
+  <set name="buclef">22</set>
+</li>
+</condition>
+<set var="num">0</set>
+<set var="arrayt"><srai>LIST OF DAY <star /></srai></set>
+<set name="arrayf"></set>
+<set var="contador"><get name="buclei"/></set>  
+<condition var="contador">
+  <li><value><get name="buclef"/></value></li>
+  <li>
+    <set var="num"> <srai>selectitem <get var="contador"/> in <get var="arrayt"/></srai></set>
+      <condition var="num">
+        <li value="null">
+          <condition var="contador">
+            <li value="1"><set name="arrayf"><get name="arrayf"/> 0<srai>minus <get var="contador"/> 1</srai>:00</set></li>
+            <li value="2"><set name="arrayf"><get name="arrayf"/> 0<srai>minus <get var="contador"/> 1</srai>:00</set></li>              
+            <li value="3"><set name="arrayf"><get name="arrayf"/> 0<srai>minus <get var="contador"/> 1</srai>:00</set></li>
+            <li value="4"><set name="arrayf"><get name="arrayf"/> 0<srai>minus <get var="contador"/> 1</srai>:00</set></li>
+            <li value="5"><set name="arrayf"><get name="arrayf"/> 0<srai>minus <get var="contador"/> 1</srai>:00</set></li>
+            <li value="6"><set name="arrayf"><get name="arrayf"/> 0<srai>minus <get var="contador"/> 1</srai>:00</set></li>
+            <li value="7"><set name="arrayf"><get name="arrayf"/> 0<srai>minus <get var="contador"/> 1</srai>:00</set></li>
+            <li value="8"><set name="arrayf"><get name="arrayf"/> 0<srai>minus <get var="contador"/> 1</srai>:00</set></li>
+            <li value="9"><set name="arrayf"><get name="arrayf"/> 0<srai>minus <get var="contador"/> 1</srai>:00</set></li>
+            <li value="10"><set name="arrayf"><get name="arrayf"/> 0<srai>minus <get var="contador"/> 1</srai>:00</set></li>
+            <li><set name="arrayf"><get name="arrayf"/> <srai>minus <get var="contador"/> 1</srai>:00</set></li>
+          </condition>
+      </li>
+    </condition>
+   <set var="contador"><map name="successor"><get var="contador"/></map></set>
+    <loop/>
+  </li>
+</condition>
+<set name="fecha"><star/></set>
+</think>
+Las horas disponibles la <star index="2"/> del <star /> son: <get name="arrayf"/>, le interesa alguna?<think><set name="topic">cita</set></think> 
+
+</template>
+</category>
+
+<category>
+<pattern>(dame) (quisiera) (una) cita (para) hoy por la *</pattern>
+<template>
+<think>
+  <set var="f"><srai> DATE </srai></set>
+  <set var="d"><srai> SELECTITEM 1 IN <get var="f"/></srai></set>
+  <set var="m"><srai> SELECTITEM 2 IN <get var="f"/></srai></set>
+  <set var="m"><map name="month_index_ES"><get var="m"/></map></set>
+  <set var="a"><srai> SELECTITEM 3 IN <get var="f"/></srai></set>
+  <set var="f"><get var="d"/>-<get var="m"/>-<get var="a"/></set>
+</think>
+<srai><get var="f"/> POR LA <star/></srai>
+</template>
+</category>
+
+<category>
+<pattern>(dame) (quisiera) (una) cita (para) mañana por la *</pattern>
+<template>
+<think>
+  <set var="f"><srai> DATE TOMORROW</srai></set>
+  <set var="d"><srai> SELECTITEM 1 IN <get var="f"/></srai></set>
+  <set var="m"><srai> SELECTITEM 2 IN <get var="f"/></srai></set>
+  <set var="m"><map name="month_index_ES"><get var="m"/></map></set>
+  <set var="a"><srai> SELECTITEM 3 IN <get var="f"/></srai></set>
+  <set var="f"><get var="d"/>-<get var="m"/>-<get var="a"/></set>
+</think>
+<srai><get var="f"/> POR LA <star/></srai>
+</template>
+</category>
+
+<category>
+<pattern>(dame) (quisiera) (una) cita (para) pasado mañana por la *</pattern>
+<template>
+<think>
+  <set var="f"><srai> DAYAFTERTOMORROWDATE</srai></set>
+  <set var="d"><srai> SELECTITEM 1 IN <get var="f"/></srai></set>
+  <set var="m"><srai> SELECTITEM 2 IN <get var="f"/></srai></set>
+  <set var="m"><map name="month_index_ES"><get var="m"/></map></set>
+  <set var="a"><srai> SELECTITEM 3 IN <get var="f"/></srai></set>
+  <set var="f"><get var="d"/>-<get var="m"/>-<get var="a"/></set>
+</think>
+<srai><get var="f"/> POR LA <star/></srai>
+</template>
+</category>
+
+<category>
+<pattern>(dame) (quisiera) (una) cita (para) (el) (proximo) (siguiente) * por la *</pattern>
+<template>
+<think>
+  <set var="sum"><srai> DAYS UNTIL <star/></srai></set>
+  <set var="f"><srai>DATE IN <get var="sum"/> DAYS</srai></set>
+  <set var="m"><srai> SELECTITEM 2 IN <get var="f"/></srai></set>
+  <set var="m"><map name="month_index_ES"><get var="m"/></map></set>
+  <set var="d"><srai> SELECTITEM 1 IN <get var="f"/></srai></set>
+  <set var="a"><srai> SELECTITEM 3 IN <get var="f"/></srai></set>
+  <set var="f"><get var="d"/>-<get var="m"/>-<get var="a"/></set>
+</think>
+<srai><get var="f"/> POR LA <star index="2"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>(Quisiera) (dame) (una) cita (para) el * de *  del * por la *</pattern>
+<template>
+<think>
+ 
+  <set var="d"><star/></set>
+  <set var="m"><star index="2"/></set>
+  <set var="m"><map name="month_index_ES"><get var="m"/></map></set>
+  <set var="a"><srai>deletrea <star index="3"/></srai></set>
+  <set var="uno"><srai>selectitem 3 in <get var ="a"/></srai></set>
+  <set var="dos"><srai>selectitem 4 in <get var ="a"/></srai></set>
+  <set var="a"><get var="uno"/><get var="dos"/></set>
+  <set var="f"><get var="d"/>-<get var="m"/>-<get var="a"/></set>
+</think>
+<srai><get var="f"/> POR LA <star index="4"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>(Quisiera) (dame) (una) cita (para) el * de * por la *</pattern>
+<template>
+<think>
+ 
+  <set var="d"><star/></set>
+  <set var="m"><star index="2"/></set>
+  <set var="m"><map name="month_index_ES"><get var="m"/></map></set>
+  <set var="f"><get var="d"/>-<get var="m"/>-20</set>
+</think>
+<srai><get var="f"/> POR LA <star index="3"/></srai>
+</template>
+</category>
+
+
+</aiml>
