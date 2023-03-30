@@ -1,0 +1,2 @@
+# IA
+Repositorio prácitca IA
